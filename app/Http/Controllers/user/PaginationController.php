@@ -12,9 +12,11 @@ class PaginationController extends Controller
     {
         if ($request->ajax()) {
             if ($request->id) {
-                $data = Category::where('id', '<', $request->id)->limit(3)->get();
+                // $data = Category::where('id', '<', $request->id)->limit(3)->get();
+                $data = Category::OrderBy('id', 'ASC')->where('id', '>', $request->id)->limit(3)->get();
+
             } else {
-                $data = Category::limit(3)->get();
+                $data = Category::limit(9)->get();
             }
         }
         return view('includes.category', compact('data'));

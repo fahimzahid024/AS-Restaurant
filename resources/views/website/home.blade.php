@@ -35,8 +35,7 @@
             <?php  ?>
             @csrf
             <div class="row" style="background: black" id="categoryData">
-                 
-                {{-- dir:include.category.blade.php --}}
+                  
                
             </div>
         </div>
@@ -52,7 +51,7 @@
 
 
     <!-- -------------Variety----------------------- -->
-    {{-- <section id="variety" class="variety pt-4">
+    <section id="variety" class="variety pt-4">
 
         <div class="container">
             <div class="section-title">
@@ -65,10 +64,10 @@
 
             </div>
             <div class="row" id="ProductData">
-                @if(!$getData->isEmpty())
-                    @foreach ($getData as $item)
+                @if(!$product->isEmpty())
+                    @foreach ($product as $item)
                     <div class="col-md-4">
-                        <a href="{{ route('view.more', $item->product_id) }}">
+                        <a href="{{ route('view.more', $item->id) }}">{{--  --}}
                             <div class="card">
                             <img src="{{ asset('/images/'.$item->product_image) }}" height="270px" alt="">
                             <div class="card-body mt-1">
@@ -89,7 +88,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <a href="" class="btn btn-prod d-block">
+                    <a href="{{ route('all-product') }}" class="btn btn-prod d-block">
                         View all Products
                         <i class="fas fa-carrot"></i>
                     </a>
@@ -109,7 +108,7 @@
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
     <!-- -------------End Variety----------------------- -->
 
     <!-- -----------------product section-------------------- -->

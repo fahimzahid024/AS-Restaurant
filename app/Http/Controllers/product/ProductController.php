@@ -9,6 +9,10 @@ use Yajra\DataTables\DataTables;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -137,9 +141,11 @@ class ProductController extends Controller
         $post=Product::all();
         return Datatables::of($post)
                ->addColumn('action', function($post){
-            return '<a onclick="showData('.$post->id.')" class="btn btn-sm btn-success">Show</a>'.' '. 
-                   '<a onclick="editForm('.$post->id.')" class="btn btn-sm btn-primary">Edit</a>'.' '. 
-                   '<a onclick="deleteData('.$post->id.')" class="btn btn-sm btn-danger">Delete</a>';
+            return '<a onclick="showData('.$post->id.')" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>'.' '. 
+                   '<a onclick="editForm('.$post->id.')" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>'.' '. 
+                   '<a onclick="deleteData('.$post->id.')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>';
                })->make(true);
     }
+
+    
 }

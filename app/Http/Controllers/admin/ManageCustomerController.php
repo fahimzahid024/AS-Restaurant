@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\category;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\admin\category\Category;
+use App\user\customer\Customer;
 use Yajra\DataTables\DataTables;
 
-class CategoryController extends Controller
+class ManageCustomerController extends Controller
 {
     public function __construct()
     {
@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.category');
+        return view('admin.ManageCustomer.customer');
     }
 
     /**
@@ -30,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -41,17 +41,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'category_name' => 'required|unique:categories,category_name|max:255',
-        ]);
-        try{
-            $data = [
-                'category_name' => $request['category_name'],
-               ];
-                return Category::create($data);
-        }catch(\Exception $e){
-            return Category::create();
-        }
+        //
     }
 
     /**
@@ -62,8 +52,10 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $post=Category::find($id);
-        return $post;
+        // $order = DB::table('order')->where('customer_id',$customer_id)->get();
+        // foreach($order as $v_o){}
+        // $shopping_id = DB::table('shopping_cart')->where('order_id',$v_o->order_id)->get();
+        return view('admin.order.view_customer_order_list');
     }
 
     /**
@@ -74,8 +66,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category=Category::find($id);
-        return $category;
+        //
     }
 
     /**
@@ -87,13 +78,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $validatedData = $request->validate([
-        //     'category_name' => 'required|unique:categories,category_name|max:255',
-        // ]);
-        $Category=Category::find($id);
-        $Category->category_name=$request['category_name'];
-        $Category->update();
-        return $Category;
+        //
     }
 
     /**
@@ -104,15 +89,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
+        //
     }
-    public function all_category(){
-        $post=Category::all();
+    public function all_customer(Request $request){
+        $post=Customer::all();
         return Datatables::of($post)
                ->addColumn('action', function($post){
-            return '<a onclick="showData('.$post->id.')" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>'.' '. 
-                    '<a onclick="editForm('.$post->id.')" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a>'.' '. 
-                    '<a onclick="deleteData('.$post->id.')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>';
+            return '<a onclick="showData('.$post->customer_id.')" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>'.' '. 
+                    '<a onclick="deleteData('.$post->customer_id.')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>';
                })->make(true);
     }
 }

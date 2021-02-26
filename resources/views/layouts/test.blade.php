@@ -77,11 +77,11 @@
         <!-- -----Nav------ -->
         <nav class="navbar navbar-expand-lg main-navbar bg-color main-navbar-color" id="main-navbar">
             <div class="container">
-                <a href="" class="navbar-brand">  {{-- {{ route('index') }} --}}
+                <a href="{{ route('index') }}" class="navbar-brand">
                     <img src="{{ asset('frontend/images/ashiana.png') }}" height="100px" alt="">
                 </a>
                 <div class="order-lg-last btn-group">
-                    <a href=""><i class="fas fa-shopping-cart fa-2x"></i></a> {{-- {{ route('show-cart') }} --}}
+                    <a href="{{ route('show-cart') }}"><i class="fas fa-shopping-cart fa-2x"></i></a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav"
                     aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation"><i
@@ -89,7 +89,7 @@
                 <div class="collapse navbar-collapse" id="myNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-link">
-                            <a href="" class="nav-link">Home</a>{{-- {{ route('index') }} --}}
+                            <a href="{{ route('index') }}" class="nav-link">Home</a>
                         </li>
                         <li class="nav-link">
                             <a href="#product-container" class="nav-link">Categories</a>
@@ -198,6 +198,7 @@
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    
     <script>
         var token = $('input[name="_token"]').val();
         load_more('',token);
@@ -214,7 +215,6 @@
         }
         $('body').on('click','#loadMoreData',function(){
             var id = $(this).data('id');
-
             $('#loadMoreData').html("Loading...");
             load_more(id,token);
         })

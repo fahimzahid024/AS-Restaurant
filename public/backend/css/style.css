@@ -5,3 +5,10 @@
     font-weight: 700;
     font-size: 20px;
 }
+.grey-bg {  
+    background-color: #F5F7FA;
+}
+.text-uppercase{
+    font-weight: 800;
+    color: rgb(216, 153, 35);
+}
